@@ -6,7 +6,7 @@
 # Prof. Dr. Peter A. Henning, 2016
 # 
 #  $Id: 70_DoorPi.pm 2016-05 - pahenning $
-#adsf
+#
 #  TODO: Link /xx weglassen beim letzten Call
 #
 ########################################################################################
