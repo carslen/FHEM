@@ -186,32 +186,32 @@ sub winShutterAssociate($$$$) {
 	if ($defs{$windowcontact} && $defs{$shutter}) {
 
 		if (AttrVal($shutter,'subType', undef) eq "blindActuator" && AttrVal($windowcontact,'subType',undef) eq "threeStateSensor") {
-			my $oldAttrWin = AttrVal($windowcontact,'userattr',undef);
-			my $oldAttrRollo = AttrVal($shutter,'userattr',undef);
+			my $oldAttrWindow = AttrVal($windowcontact,'userattr',undef);
+			my $oldAttrShutter = AttrVal($shutter,'userattr',undef);
 
 			#Jetzt können wir sehen, ob und welche notwendigen userattr vorhanden sind
 			#und ggf. Werte zuweisen
-			if(index($oldAttrWin,"ShutterAssociated") < 0){
-				fhem("attr $windowcontact userattr $oldAttrWin ShutterAssociated");
+			if(index($oldAttrWindow,"ShutterAssociated") < 0){
+				fhem("attr $windowcontact userattr $oldAttrWindow ShutterAssociated");
 			}
 			fhem("attr $windowcontact ShutterAssociated $shutter");
-			if(index($oldAttrRollo,"WindowContactAssociated") < 0) {
-				fhem("attr $shutter userattr $oldAttrRollo WindowContactAssociated");
-				$oldAttrRollo = AttrVal($shutter,'userattr',undef);
+			if(index($oldAttrShutter,"WindowContactAssociated") < 0) {
+				fhem("attr $shutter userattr $oldAttrShutter WindowContactAssociated");
+				$oldAttrShutter = AttrVal($shutter,'userattr',undef);
             }
 			fhem("attr $shutter WindowContactAssociated $windowcontact");
-			if(index($oldAttrRollo,"WindowContactOnHoldState") < 0) {
-				fhem("attr $shutter userattr $oldAttrRollo WindowContactOnHoldState");
-				$oldAttrRollo = AttrVal($shutter,'userattr',undef);
+			if(index($oldAttrShutter,"WindowContactOnHoldState") < 0) {
+				fhem("attr $shutter userattr $oldAttrShutter WindowContactOnHoldState");
+				$oldAttrShutter = AttrVal($shutter,'userattr',undef);
 			}
 			#fhem("attr $shutter WindowContactOnHoldState none");
 			fhem("setreading $shutter WindowContactOnHoldState none");
-			if(index($oldAttrRollo,"WindowContactOpenMaxClosed") < 0) {
-				fhem("attr $shutter userattr $oldAttrRollo WindowContactOpenMaxClosed");
+			if(index($oldAttrShutter,"WindowContactOpenMaxClosed") < 0) {
+				fhem("attr $shutter userattr $oldAttrShutter WindowContactOpenMaxClosed");
 			}
 			fhem("attr $shutter WindowContactOpenMaxOpen $maxPosition");
-			if(index($oldAttrRollo,"WindowContactTiltedMaxOpen") < 0) {
-				fhem("attr $shutter userattr $oldAttrRollo WindowContactTiltedMaxClosed");
+			if(index($oldAttrShutter,"WindowContactTiltedMaxOpen") < 0) {
+				fhem("attr $shutter userattr $oldAttrShutter WindowContactTiltedMaxClosed");
 			}
 			fhem("attr $shutter WindowContactTiltedMaxClosed $maxPosTilted");
 
@@ -231,12 +231,7 @@ sub attrShutterTypeJalousie($$) {
 	if ($defs{$shutter}) {
 
         if (AttrVal($shutter,'subType', undef) eq "blindActuator") {
-            my $oldAttrRollo = AttrVal($shutter,'userattr',undef);
-
-            #Jetzt können wir sehen, ob das notwendige userattr vorhanden ist
-			#und ggf. den Wert zuweisen
-			if(index($oldAttrRollo,"JalousieTurnLevel") < 0){
-                fhem("attr $shutter userattr $oldAttrRollo JalousieTurnValue");
+            my $oldAttrShutter JalousieTurnValue");
             }
 			fhem("attr $shutter JalousieTurnValue $turnValue");
 		}

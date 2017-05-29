@@ -1,4 +1,4 @@
-my $shutter = 123;
+my $shutter = leer123;
 if (!$shutter){
     print "Kein Rollladen definiert"
     }
