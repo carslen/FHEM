@@ -60,13 +60,20 @@ sub HM_ShutterUtils_Notify($$) {
 			my $motorReading = ReadingsVal($shutter,'motor',0);
 			my $event = "none";
 		  	my $setPosition = $position;
-			if($rawEvent =~ /set_/) { 
+			if($rawEvent =~ /set_/) {
 				$setPosition = substr $rawEvent, 4, ; #FHEM-Befehl
-				if ($setPosition eq "on") {$setPosition = 100;}
-				elsif ($setPosition eq "off") {$setPosition = 0;}
+				if ($setPosition eq "on") {
+					$setPosition = 100;
+					}
+				elsif ($setPosition eq "off") {
+					$setPosition = 0;
+					}
 				#dann war der Trigger über Tastendruck oder Motor-Bewegung
-				} 
-		    elsif ($motorReading =~ /down/) { $setPosition = -1;}
+				}
+		    elsif ($motorReading =~ /down/) {
+				$setPosition = -1;
+				}
+
 			$winState = $rawEvent if ($rawEvent =~ /closed|open|tilted/);
 			
 			Log3 $dev, 4, "$shutter setPosition: $setPosition, Age: $readingsAge; Window: $winState";
@@ -85,14 +92,19 @@ sub HM_ShutterUtils_Notify($$) {
 				if($setPosition < $maxPosOpen && $winState eq "open" && $windowcontact ne "none") {
 					if ($position > $maxPosOpen){
 						fhem("set $shutter $maxPosOpen");
-					} else {
+					} 
+					else {
 						fhem("set $shutter $targetPosOpen");
 					}
 					
 					if ($setPosition == -1){
 						fhem("setreading $shutter WindowContactOnHoldState $onHoldState");
-					} else {fhem("setreading $shutter WindowContactOnHoldState $setPosition");}
+					} 
+					else {
+						fhem("setreading $shutter WindowContactOnHoldState $setPosition");
+						}
 				}
+				
 				#...(gekippt)...
 				elsif($winState eq "tilted" && $windowcontact ne "none") {
 					if($setPosition < $maxPosTilted ) { 

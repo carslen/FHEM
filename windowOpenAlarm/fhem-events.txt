@@ -1,0 +1,42 @@
+#################
+# FHEM Kommando
+#################
+
+set myShutter pct 70
+
+Events:
+
+myShutter level: set_70
+myShutter set_70
+myShutter deviceMsg: on (to vccu)
+myShutter level: 100
+myShutter motor: down:on
+myShutter pct: 100
+myShutter on
+myShutter timedOn: off
+myShutter deviceMsg: 70 (to vccu)
+myShutter level: 70
+myShutter motor: stop:70
+myShutter pct: 70
+myShutter 70
+myShutter timedOn: off
+
+
+######################
+# Schalterbetätigung
+######################
+
+Events:
+
+myShutter deviceMsg: 94.5 (to vccu)
+myShutter level: 94.5
+myShutter motor: up:94.5
+myShutter pct: 94.5
+myShutter 94.5
+myShutter timedOn: off
+myShutter deviceMsg: on (to vccu)
+myShutter level: 100
+myShutter motor: stop:on
+myShutter pct: 100
+myShutter on
+myShutter timedOn: off
