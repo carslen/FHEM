@@ -1,0 +1,20 @@
+Anforderungen für Rolladensteuerung
+====================================
+
+Zeitsteuerung
+==============
+
+Automatisches fahren der Rollläden morgens und abends, abhängig von Lichtverhältnissen. Zusätzliche Beachtung von Werktagen/Wochenenden/Feiertagen (holiday Modul ist installiert).
+
+Beschattungssteuerung
+======================
+
+Beschattet soll aktiviert werden, wenn (UND verknüpft)..
+       .. Lichtwert bestimmten Wert erreicht
+       .. Außentemperatur bestimmten Wert erreicht
+       Beschattung soll aufgehoben werden, wenn (OR verknüpft)..
+       .. Lichtwert bestimmten Wert unterschreitet
+       .. Außentemperatur bestimmten Wert erreicht/unterschreitet
+
+    -> Reaktion auf öffnen der Fenster
+       
