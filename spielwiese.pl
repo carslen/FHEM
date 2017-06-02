@@ -56,7 +56,7 @@ foreach(@homies){
 }
 print %ages;
 
-use List::Util qw(max);
+use List::Util qw{max};
 my %height = (
     foo => 170,
     bar => 181,

@@ -18,24 +18,35 @@ alarmMessageUtils_Initialize($$)
 
 # Enter you functions below _this_ line.
 
-sub openWindowAlarm() {
+sub openWindowAlarm($) {
     # Diese Funktion sendet eine Benachrichtigung über offene Fenster per Telegramm, wenn die letzte Person das Haus verlässt, aber noch ein Fenster geöffnet ist.
     # notify reagiert auf Presence und tfk Events:
     # defmod notifyName notify sec..*(closed|open|tilted) { openWindowAlarm($NAME,$EVENT) }
-	my ($dev, $rawEvent) = @_;
+	# my ($dev, $rawEvent) = @_;
+
+    my ($recipient) = @_;
 
     #Variablen definieren
     my @tfk=devspec2array("subType=threeStateSensor");  # Welche Türfensterkontakte gibt es überhaupt
-    my @windowOpen = undef;
+    my @windowOpenNum = undef;
+    my @windowOpenDev = undef;
+    my @last          = undef;
     
+    # Anzahl offener Fenster ermitteln
+    #
+
     foreach(@tfk) {
-        $state = ReadingsVal($_,"state","nA");
-        if ($stage eq "open") {
-            push(@windowOpen,$_);
+        my $state = ReadingsVal($_,"state","nA");
+        my $dev   = AttrVal($_,"alias", "nA");
+        if ($state eq "open") {
+            push(@windowOpenNum,$_);
+            push(@windowOpenDev,$dev);
         }
     }
+    my $message = "Es sind $#windowOpen Fenster offen! Bitte @windowOpenDev schließen.";
+    Debug($message);
+    fhem{set Telegramm msg $recipient $message};
 
-print "Es sind $#windowOpen Fenster offen!";
 
 }
 
