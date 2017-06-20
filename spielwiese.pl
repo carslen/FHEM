@@ -56,7 +56,7 @@ foreach(@homies){
 }
 print %ages;
 
-use List::Util qw{max};
+use List::Util qw(max);
 my %height = (
     foo => 170,
     bar => 181,
@@ -67,9 +67,40 @@ my $highest = max values %height;
  
 print "$highest\n";
 
-foreach $entry (%height){
-    if ((value "$entry") = "$highest"){
-        $match = key $entry;
-        print "match ist $match";
-    }
+use List::UtilsBy qw(max_by);
+my %height = (
+    foo => 170,
+    bar => 181,
+    moo => 175,
+);
+
+my $highest = max_by { $height{$_} } keys %height;
+print "$highest\n";
+print "$height{ $highest }\n";
+
+$contacts = qw(ReadingsVal ...);
+@contacts = qw(191950828:Robin:@rlxe2 180623342:Carsten_Lenz:@clxe1 155309316:Zelmira_Lenz:@ZelmiraLenz);
+foreach(@contacts) {
+    print "\$_: $_\n";
+    $contact =~ s/[@]\w+$/$_/;
+    print "\$contact: $contact\n";
 }
+
+
+$_="Das ist ein einfacher Text";
+$result1=/ist/;
+$result2=/schwieriger Text/;
+print "\$result1: $result1\n";
+print "\$result2: $result2\n";
+#
+# Verwenden von Variablen in /.../
+$substring="ein";
+if( /$substring/ ){
+print "\"ein\" ist Bestandteil von \$_ \n";
+}
+
+======================
+my $str = '191950828:Robin:@rlxe2 180623342:Carsten_Lenz:@clxe1 155309316:Zelmira_Lenz:@ZelmiraLenz';
+my $regex = qr/[@]\w+$/p;
+print 
+if ( $str =~ /$regex/ )
