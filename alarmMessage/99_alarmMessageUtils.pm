@@ -46,7 +46,7 @@ sub openWindowAlarm($) {
     my $message = "Es sind $#windowOpen Fenster offen! Bitte @windowOpenDev schließen."$lastStanding" hat als letztes das Haus verlassen.";
     Debug($message);
     # Benachrichtigung per Telegram
-    #fhem{set Telegram msg $recipient $message};
+    #fhem{set TelegramBot msg Carsten_Lenz $message};
 
 
 }
